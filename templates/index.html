@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <title>温度モニター</title>
     <style>
-        body {
+        body {<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>温度モニター</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <h1>温度（クラウド）</h1>
+    <div>ds18b20：<span id="ds">-- ℃</span></div>
+    <div>pico内部：<span id="pico">-- ℃</span></div>
+    <div>時刻：<span id="time">--:--:--</span></div>
+
+    <script>
+        async function update() {
+            const res = await fetch("/get");
+            const data = await res.json();
+
+            if (data.ds !== null) {
+                document.getElementById("ds").textContent = data.ds + " ℃";
+                document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
+                document.getElementById("time").textContent = data.time;
+            }
+        }
+
+        setInterval(update, 2000); // 2秒ごと更新
+        update();
+    </script>
+</body>
+</html>
             text-align: center;
             font-family: sans-serif;
             font-size: 24px;
