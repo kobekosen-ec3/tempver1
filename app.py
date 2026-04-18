@@ -11,7 +11,7 @@ latest_data = {
 # 👇 ここ変更
 @app.route("/")
 def home():
-    return send_file("index.html")
+    return send_file("template/index.html")
 
 @app.route("/data", methods=["POST"])
 def receive():
