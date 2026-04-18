@@ -1,20 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
-# 最新データを保存する変数
 latest_data = {
     "ds": None,
     "pico": None,
     "time": "--:--:--"
 }
 
-# 確認用
+# 👇 ここ変更
 @app.route("/")
 def home():
-    return "OK"
+    return send_file("index.html")
 
-# データ受信（Pico → Render）
 @app.route("/data", methods=["POST"])
 def receive():
     global latest_data
@@ -22,11 +20,9 @@ def receive():
     print("受信:", latest_data)
     return "OK"
 
-# データ取得（スマホ → Render）
 @app.route("/get", methods=["GET"])
 def get_data():
     return jsonify(latest_data)
 
-# Render用
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
