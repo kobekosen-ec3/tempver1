@@ -8,10 +8,10 @@
     </style>
 </head>
 <body>
-    <h1>温度（クラウド）</h1>
+    <h1>温度</h1>
     <div>ds18b20：<span id="ds">-- ℃</span></div>
     <div>pico内部：<span id="pico">-- ℃</span></div>
-    <div>時刻：<span id="time">--:--:--</span></div>
+    <!-- <div>時刻：<span id="time">--:--:--</span></div> -->
 
     <script>
         async function update() {
@@ -19,9 +19,9 @@
             const data = await res.json();
 
             if (data.ds !== null) {
-                document.getElementById("ds").textContent = data.ds + " ℃";
-                document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
-                document.getElementById("time").textContent = data.time;
+                document.getElementById("ds").textContent = data.ds.toFixed(1) + " ℃";
+                document.getElementById("pico").textContent = data.pico.toFixed(1) + " ℃";
+                // document.getElementById("time").textContent = data.time;
             }
         }
 
