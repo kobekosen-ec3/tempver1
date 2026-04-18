@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>温度モニター</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>温度（クラウド）</h1>
+
+    <div>DS18B20：{{ data.ds }} ℃</div>
+    <div>Pico内部：{{ data.pico }} ℃</div>
+    <div>時刻：{{ data.time }}</div>
+
+</body>
+</html>
