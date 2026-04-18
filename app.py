@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -8,10 +8,9 @@ latest_data = {
     "time": "--:--:--"
 }
 
-# 👇 ここ変更
 @app.route("/")
 def home():
-    return send_file("index.html")
+    return render_template("index.html")  # ← ここ変更
 
 @app.route("/data", methods=["POST"])
 def receive():
