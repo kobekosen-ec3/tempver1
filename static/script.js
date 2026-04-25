@@ -1,3 +1,4 @@
+// static/script.js
 async function update() {
     const res = await fetch("/get");
     const data = await res.json();
@@ -25,8 +26,8 @@ async function update() {
 
         li.textContent =
             log[i].time +
-            " / DS:" + log[i].ds +
-            " / Pico:" + log[i].pico.toFixed(1);
+            " / DS:" + log[i].ds.toFixed(2) +
+            " / Pico:" + log[i].pico.toFixed(2);
 
         list.appendChild(li);
     }
