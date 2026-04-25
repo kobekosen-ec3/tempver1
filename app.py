@@ -41,9 +41,11 @@ def get_data():
 def get_log():
     try:
         res = requests.get(GAS_URL)
-        return jsonify(res.json())
-    except:
-        return jsonify([])
+        print(res.text)
+        return res.text, 200, {'Content-Type': 'application/json'}
+    except Exception as e:
+        print("log error:", e)
+        return "[]"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
