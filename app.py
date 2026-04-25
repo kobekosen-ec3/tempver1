@@ -1,6 +1,6 @@
 #app.py
 from flask import Flask, request, jsonify, render_template
-from datetime import datetime, timedelta
+from datetime import datetime, timezone, timedelta
 import json
 import os
 
@@ -32,24 +32,22 @@ def receive():
 
     data = request.json
 
-    # UTC → 日本時間
-    jst = datetime.utcnow() + timedelta(hours=9)
-    data["time"] = jst.strftime("%H:%M:%S")
-    
-    latest_data = data
+    # 日本時間取得
+    jst = timezone(timedelta(hours=9))
+    now = datetime.now(jst)
 
-    # ログ追加
+    # 日時文字列保存
+    data["time"] = now.strftime("%Y/%m/%d %H:%M:%S")
+
+    latest_data = data
     log_data.append(data)
 
-    # 最大100件
     if len(log_data) > 100:
         log_data.pop(0)
 
-    # JSON保存
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(log_data, f, ensure_ascii=False)
 
-    print("受信:", data)
     return "OK"
 
 @app.route("/get")
