@@ -1,6 +1,7 @@
 // static/script.js
 const logs = document.getElementById("logs");
 const logbtn = document.getElementById("logopen");
+
 let loghyouji = false;
 
 async function update() {
@@ -15,11 +16,10 @@ async function update() {
             data.pico.toFixed(2) + " ℃";
 
         const now = new Date();
-
         const hh = String(now.getHours()).padStart(2, "0");
         const mm = String(now.getMinutes()).padStart(2, "0");
         const ss = String(now.getSeconds()).padStart(2, "0");
-        
+
         document.getElementById("time").textContent =
             hh + ":" + mm + ":" + ss;
     }
@@ -43,12 +43,15 @@ async function update() {
     }
 }
 
+// ログ表示ボタン
 logbtn.addEventListener("click", () => {
-  if(loghyouji){
-      logs.style.display = "none";
-  }else{
-      logs.style.display = "block";
-  }
+    if (loghyouji) {
+        logs.style.display = "none";
+        loghyouji = false;
+    } else {
+        logs.style.display = "block";
+        loghyouji = true;
+    }
 });
 
 setInterval(update, 2000);
