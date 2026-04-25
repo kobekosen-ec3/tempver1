@@ -1,4 +1,6 @@
+#app.py
 from flask import Flask, request, jsonify, render_template
+from datetime import datetime, timedelta
 import json
 import os
 
@@ -29,6 +31,11 @@ def receive():
     global latest_data, log_data
 
     data = request.json
+
+    # UTC → 日本時間
+    jst = datetime.utcnow() + timedelta(hours=9)
+    data["time"] = jst.strftime("%H:%M:%S")
+    
     latest_data = data
 
     # ログ追加
