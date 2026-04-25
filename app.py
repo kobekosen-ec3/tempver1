@@ -1,26 +1,16 @@
-#app.py
 from flask import Flask, request, jsonify, render_template
-from datetime import datetime, timezone, timedelta
-import json
-import os
+import requests
 
 app = Flask(__name__)
 
-LOG_FILE = "log.json"
-
-# 初期データ
 latest_data = {
     "ds": None,
     "pico": None,
-    "time": "--:--:--"
+    "time": "--"
 }
 
-# ログ読み込み
-if os.path.exists(LOG_FILE):
-    with open(LOG_FILE, "r", encoding="utf-8") as f:
-        log_data = json.load(f)
-else:
-    log_data = []
+# GASのURLに変更
+GAS_URL = "https://script.google.com/macros/s/AKfycbz2zaEWHde2jAPECg80vL9zpWWfh-rl4cbGDwu4w6lbj6zIkFUSK34mqWU-3-WHJdTTdA/exec"
 
 @app.route("/")
 def home():
@@ -28,25 +18,16 @@ def home():
 
 @app.route("/data", methods=["POST"])
 def receive():
-    global latest_data, log_data
+    global latest_data
 
     data = request.json
-
-    # 日本時間取得
-    jst = timezone(timedelta(hours=9))
-    now = datetime.now(jst)
-
-    # 日時文字列保存
-    data["time"] = now.strftime("%Y/%m/%d %H:%M:%S")
-
     latest_data = data
-    log_data.append(data)
 
-    if len(log_data) > 100:
-        log_data.pop(0)
-
-    with open(LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(log_data, f, ensure_ascii=False)
+    # GASへ転送
+    try:
+        requests.post(GAS_URL, json=data)
+    except:
+        pass
 
     return "OK"
 
@@ -56,7 +37,11 @@ def get_data():
 
 @app.route("/log")
 def get_log():
-    return jsonify(log_data)
+    try:
+        res = requests.get(GAS_URL)
+        return jsonify(res.json())
+    except:
+        return jsonify([])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
