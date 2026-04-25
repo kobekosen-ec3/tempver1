@@ -21,7 +21,7 @@
         const data = await res.json();
     
         if (data.ds !== null) {
-            document.getElementById("ds").textContent = data.ds + " ℃";
+            document.getElementById("ds").textContent = data.ds.toFixed(2)  + " ℃";
             document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
             document.getElementById("time").textContent = data.time;
         }
