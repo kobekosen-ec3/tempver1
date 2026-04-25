@@ -11,7 +11,7 @@ latest_data = {
 }
 
 # GASのURLに変更
-GAS_URL = "https://script.google.com/macros/s/AKfycbz2zaEWHde2jAPECg80vL9zpWWfh-rl4cbGDwu4w6lbj6zIkFUSK34mqWU-3-WHJdTTdA/exec"
+GAS_URL = "https://script.google.com/macros/s/AKfycbwqNTLKU3NFSHgMRXg7jbYxfA2mn6wMContBI1evUfXAEo-zhZp3XV-LLPrmCWb9MFr1w/exec"
 
 @app.route("/")
 def home():
