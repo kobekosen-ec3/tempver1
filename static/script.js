@@ -1,4 +1,8 @@
 // static/script.js
+const logs = document.getElementById("logs");
+const logbtn = document.getElementById("logopen");
+let loghyouji = false;
+
 async function update() {
     const res = await fetch("/get");
     const data = await res.json();
@@ -38,6 +42,14 @@ async function update() {
         list.appendChild(li);
     }
 }
+
+logbtn.addEventListener("click", () => {
+  if(loghyouji){
+      logs.style.display = "none";
+  }else{
+      logs.style.display = "block";
+  }
+});
 
 setInterval(update, 2000);
 update();
