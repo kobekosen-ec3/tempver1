@@ -3,17 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>温度モニター</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: sans-serif;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,7 +13,7 @@
     <div>ds18b20：<span id="ds">-- ℃</span></div>
     <div>pico内部：<span id="pico">-- ℃</span></div>
 
-    <button id="logopen">ログを表示</button>
+    <button id="logopen">ログを<span id=hyoujitx>表示</span></button>
     <div id="logs" style="display:none;">
         <h2>ログ</h2>
         <ul id="log"></ul>
