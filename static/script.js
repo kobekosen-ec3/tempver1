@@ -48,11 +48,11 @@ async function update() {
 logbtn.addEventListener("click", () => {
     if (loghyouji) {
         logs.style.display = "none";
-        hyoujitx="表示";
+        hyoujitx.textContent = "表示";
         loghyouji = false;
     } else {
         logs.style.display = "block";
-        hyoujitx="非表示";
+        hyoujitx.textContent = "非表示";
         loghyouji = true;
     }
 });
