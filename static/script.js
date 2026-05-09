@@ -35,7 +35,7 @@ async function update() {
         li.textContent = log[i].time + " / DS:" + log[i].ds.toFixed(2) + " / Pico:" + log[i].pico.toFixed(2);
         list.appendChild(li);
     }
-    logbox.scrollTop = logbox.scrollHeight;
+    
 }
 
 // ログ表示ボタン
@@ -46,6 +46,7 @@ logbtn.addEventListener("click", () => {
         loghyouji = false;
     } else {
         logs.style.display = "block";
+        logbox.scrollTop = logbox.scrollHeight;
         hyoujitx.textContent = "非表示";
         loghyouji = true;
     }
