@@ -49,11 +49,11 @@ async function update() {
         // 温度
         const dstemp = document.createElement("span");
         dstemp.className = "log-dstemp";
-        dstemp.textContent ="DS:" + log[i].ds.toFixed(2) +"℃";
+        dstemp.textContent ="センサー温度:" + log[i].ds.toFixed(2) +"℃";
 
         const picotemp = document.createElement("span");
         picotemp.className = "log-picotemp";
-        picotemp.textContent ="Pico:" + log[i].pico.toFixed(2) + "℃";
+        picotemp.textContent ="室内温度:" + log[i].pico.toFixed(2) + "℃";
     
         li.appendChild(date);
         li.appendChild(time);
