@@ -8,6 +8,10 @@ ul {
     padding: 0;
     margin: 0;
 }
+.logs{
+    height: 280px;
+    overflow-y: auto;
+}
 
 @media screen and (max-width:780px) {
     body {
