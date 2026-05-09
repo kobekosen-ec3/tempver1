@@ -8,7 +8,7 @@ ul {
     padding: 0;
     margin: 0;
 }
-.logs{
+.log{
     height: 280px;
     overflow-y: auto;
 }
