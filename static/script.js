@@ -70,7 +70,7 @@ logbtn.addEventListener("click", () => {
         loghyouji = false;
     } else {
         logs.style.display = "block";
-        logbox.scrollTop = logbox.scrollHeight;
+        // logbox.scrollTop = logbox.scrollHeight;
         hyoujitx.textContent = "非表示";
         loghyouji = true;
     }
