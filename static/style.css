@@ -8,6 +8,14 @@ ul {
     padding: 0;
     margin: 0;
 }
+
+.time{
+    font-size:30px
+}
+.temp{
+    font-size:35px
+}
+
 .log{
     max-height: 45vh;
     overflow-y: auto;
@@ -34,18 +42,38 @@ ul {
 
 .log-picotemp{
     font-size: 20px;
-    
 }
 
 
 
 @media screen and (max-width:780px) {
-    body {
-        font-size: 20px;
+    h1{
+        font-size:60px
+    }
+    .time{
+        font-size:45px
+    }
+    .temp{
+        font-size:50px
+    }
+    .log{
+        /* max-height: 45vh; */
+        /* overflow-y: auto; */
     }
 
-    .log{
-    max-height: 45vh;
-    overflow-y: auto;
-    }    
+    .log-date{
+        font-size: 18px;
+    }
+    
+    .log-time{
+        font-size: 15px;
+    }
+    
+    .log-dstemp{
+        font-size: 30px;
+    }
+    
+    .log-picotemp{
+        font-size: 30px;
+    }
 }
