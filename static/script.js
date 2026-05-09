@@ -30,24 +30,24 @@ async function update() {
     const list = document.getElementById("log");
     list.innerHTML = "";
 
-    for (let i = 0; i <= log.length - 1; i++) {
+    for (let i = log.length-1; i >= 0; i--) {
     
         const li = document.createElement("li");
     
         // 日付
-        const date = document.createElement("p");
+        const date = document.createElement("span");
         date.className = "log-date";
     
         const parts = log[i].time.split(" ");
         date.textContent = parts[0];
     
         // 時間
-        const time = document.createElement("p");
+        const time = document.createElement("span");
         time.className = "log-time";
         time.textContent = parts[1];
     
         // 温度
-        const temp = document.createElement("p");
+        const temp = document.createElement("span");
         temp.className = "log-temp";
     
         temp.textContent =
