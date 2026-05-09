@@ -17,4 +17,9 @@ ul {
     body {
         font-size: 20px;
     }
+
+    .log{
+    max-height: 45vh;
+    overflow-y: auto;
+}
 }
