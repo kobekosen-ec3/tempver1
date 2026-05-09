@@ -47,16 +47,18 @@ async function update() {
         time.textContent = parts[1];
     
         // 温度
-        const temp = document.createElement("span");
-        temp.className = "log-temp";
-    
-        temp.textContent =
-            "DS:" + log[i].ds.toFixed(2) +
-            "℃ / Pico:" + log[i].pico.toFixed(2) + "℃";
+        const dstemp = document.createElement("span");
+        dstemp.className = "log-dstemp";
+        dstemp.textContent ="DS:" + log[i].ds.toFixed(2) +"℃";
+
+        const picotemp = document.createElement("span");
+        picotemp.className = "log-picotemp";
+        picotemp.textContent ="Pico:" + log[i].pico.toFixed(2) + "℃";
     
         li.appendChild(date);
         li.appendChild(time);
-        li.appendChild(temp);
+        li.appendChild(dstemp);
+        li.appendChild(picotemp);
         list.appendChild(li);
     }
     
