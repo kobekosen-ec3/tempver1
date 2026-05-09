@@ -35,19 +35,19 @@ async function update() {
         const li = document.createElement("li");
     
         // 日付
-        const date = document.createElement("div");
+        const date = document.createElement("p");
         date.className = "log-date";
     
         const parts = log[i].time.split(" ");
         date.textContent = parts[0];
     
         // 時間
-        const time = document.createElement("div");
+        const time = document.createElement("p");
         time.className = "log-time";
         time.textContent = parts[1];
     
         // 温度
-        const temp = document.createElement("div");
+        const temp = document.createElement("p");
         temp.className = "log-temp";
     
         temp.textContent =
