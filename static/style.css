@@ -10,7 +10,7 @@ ul {
 }
 .log{
     max-height: auto;
-    overflow-y: auto;
+    overflow-y: 50vh;
 }
 
 #log li{
