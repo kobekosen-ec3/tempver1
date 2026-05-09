@@ -13,6 +13,20 @@ ul {
     overflow-y: auto;
 }
 
+#log li{
+}
+
+.log-date{
+    font-size: 14px;
+}
+
+.log-time{
+    font-size: 10px;
+}
+
+.log-temp{
+    font-size: 20px;
+}
 @media screen and (max-width:780px) {
     body {
         font-size: 20px;
@@ -21,5 +35,5 @@ ul {
     .log{
     max-height: 45vh;
     overflow-y: auto;
-}
+    }    
 }
