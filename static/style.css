@@ -9,8 +9,8 @@ ul {
     margin: 0;
 }
 .log{
-    max-height: auto;
-    overflow-y: 50vh;
+    max-height: 45vh;
+    overflow-y: auto;
 }
 
 #log li{
