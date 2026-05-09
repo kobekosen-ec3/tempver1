@@ -9,7 +9,7 @@ ul {
     margin: 0;
 }
 .log{
-    max-height: 280px;
+    max-height: auto;
     overflow-y: auto;
 }
 
