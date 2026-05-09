@@ -14,19 +14,31 @@ ul {
 }
 
 #log li{
+    padding-bottom: 15px;
 }
 
 .log-date{
-    font-size: 14px;
+    font-size: 12px;
+    padding-left:10px;
 }
 
 .log-time{
     font-size: 10px;
+    padding-left:10px;
 }
 
-.log-temp{
+.log-dstemp{
     font-size: 20px;
+    padding-left:10px;
 }
+
+.log-picotemp{
+    font-size: 20px;
+    
+}
+
+
+
 @media screen and (max-width:780px) {
     body {
         font-size: 20px;
