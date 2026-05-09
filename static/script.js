@@ -32,7 +32,7 @@ async function update() {
     const list = document.getElementById("log");
     list.innerHTML = "";
 
-    for (let i = 0; i >= log.length - 1; i++) {
+    for (let i = 0; i <= log.length - 1; i++) {
         const li = document.createElement("li");
 
         li.textContent =
