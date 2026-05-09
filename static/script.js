@@ -2,6 +2,7 @@
 const logs = document.getElementById("logs");
 const logbtn = document.getElementById("logopen");
 const hyoujitx = document.getElementById("hyoujitx");
+const logbox = document.getElementById("logbox");
 
 let loghyouji = false;
 
@@ -10,19 +11,16 @@ async function update() {
     const data = await res.json();
 
     if (data.ds !== null) {
-        document.getElementById("ds").textContent =
-            data.ds.toFixed(2) + " ℃";
+        document.getElementById("ds").textContent = data.ds.toFixed(2) + " ℃";
 
-        document.getElementById("pico").textContent =
-            data.pico.toFixed(2) + " ℃";
+        document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
 
         const now = new Date();
         const hh = String(now.getHours()).padStart(2, "0");
         const mm = String(now.getMinutes()).padStart(2, "0");
         const ss = String(now.getSeconds()).padStart(2, "0");
 
-        document.getElementById("time").textContent =
-            hh + ":" + mm + ":" + ss;
+        document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
     }
 
     // ログ取得
@@ -34,14 +32,10 @@ async function update() {
 
     for (let i = 0; i <= log.length - 1; i++) {
         const li = document.createElement("li");
-
-        li.textContent =
-            log[i].time +
-            " / DS:" + log[i].ds.toFixed(2) +
-            " / Pico:" + log[i].pico.toFixed(2);
-
+        li.textContent = log[i].time + " / DS:" + log[i].ds.toFixed(2) + " / Pico:" + log[i].pico.toFixed(2);
         list.appendChild(li);
     }
+    logbox.scrollTop = logbox.scrollHeight;
 }
 
 // ログ表示ボタン
