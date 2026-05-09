@@ -19,17 +19,17 @@ ul {
 
 .log-date{
     font-size: 12px;
-    padding-left:10px;
+    padding-right:10px;
 }
 
 .log-time{
     font-size: 10px;
-    padding-left:10px;
+    padding-right:10px;
 }
 
 .log-dstemp{
     font-size: 20px;
-    padding-left:10px;
+    padding-right:10px;
 }
 
 .log-picotemp{
