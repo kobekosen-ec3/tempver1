@@ -31,8 +31,32 @@ async function update() {
     list.innerHTML = "";
 
     for (let i = 0; i <= log.length - 1; i++) {
+    
         const li = document.createElement("li");
-        li.textContent = log[i].time + " / DS:" + log[i].ds.toFixed(2) + " / Pico:" + log[i].pico.toFixed(2);
+    
+        // 日付
+        const date = document.createElement("div");
+        date.className = "log-date";
+    
+        const parts = log[i].time.split(" ");
+        date.textContent = parts[0];
+    
+        // 時間
+        const time = document.createElement("div");
+        time.className = "log-time";
+        time.textContent = parts[1];
+    
+        // 温度
+        const temp = document.createElement("div");
+        temp.className = "log-temp";
+    
+        temp.textContent =
+            "DS:" + log[i].ds.toFixed(2) +
+            "℃ / Pico:" + log[i].pico.toFixed(2) + "℃";
+    
+        li.appendChild(date);
+        li.appendChild(time);
+        li.appendChild(temp);
         list.appendChild(li);
     }
     
