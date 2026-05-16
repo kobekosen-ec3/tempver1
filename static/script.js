@@ -69,7 +69,7 @@ async function update() {
     const dsTemps = [];
     const picoTemps = [];
     
-    for (let i = 0; i < log.length/2; i++) {
+    for (let i = 0; i < log.length; i++) {
         if (log[i].ds != null && log[i].pico != null) {
             labels.push(log[i].time);
             dsTemps.push(log[i].ds);
