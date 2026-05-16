@@ -3,6 +3,9 @@ const logs = document.getElementById("logs");
 const logbtn = document.getElementById("logopen");
 const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
+const ctx = document.getElementById("tempgraph");
+
+let chart = null;
 
 let loghyouji = false;
 
@@ -61,6 +64,46 @@ async function update() {
         li.appendChild(picotemp);
         list.appendChild(li);
     }
+
+    const labels = [];
+    const dsTemps = [];
+    const picoTemps = [];
+    
+    for (let i = 0; i < log.length; i++) {
+    
+        labels.push(log[i].time);
+    
+        dsTemps.push(log[i].ds);
+    
+        picoTemps.push(log[i].pico);
+    }
+
+
+    if (chart) {
+        chart.destroy();
+    }
+    
+    chart = new Chart(ctx, {
+        type: "line",
+    
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "DS18B20",
+                    data: dsTemps
+                },
+                {
+                    label: "Pico",
+                    data: picoTemps
+                }
+            ]
+        },
+    
+        options: {
+            responsive: true
+        }
+    });
     
 }
 
