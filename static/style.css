@@ -28,11 +28,15 @@ ul {
 }
 
 .log_right{
-    width: 60%;
+    width: auto;
 }
 .log{
     max-height: 35vh;
     overflow-y: auto;
+}
+
+#tempgraph{
+    max-height: 35vh;
 }
 
 #log li{
