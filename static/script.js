@@ -69,14 +69,15 @@ async function update() {
     const dsTemps = [];
     const picoTemps = [];
     
-    for (let i = 0; i < log.length; i++) {
-        if (log[i].ds != null && log[i].pico != null) {
-            labels.push(log[i].time);
-            dsTemps.push(log[i].ds);
-            picoTemps.push(log[i].pico);
+    const graphLog = log.slice(-10);
+
+    for (let i = 0; i < graphLog.length; i++) {
+        if (graphLog[i].ds != null && graphLog[i].pico != null) {
+            labels.push(graphLog[i].time);
+            dsTemps.push(graphLog[i].ds);
+            picoTemps.push(graphLog[i].pico);
         }
     }
-
 
     if (chart) {
         chart.destroy();
