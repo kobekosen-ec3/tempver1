@@ -18,8 +18,18 @@ ul {
 
 #logs{
     display:flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
 }
 
+.log_left{
+    width: 40%;
+}
+
+.log_right{
+    width: 60%;
+}
 .log{
     max-height: 35vh;
     overflow-y: auto;
@@ -47,6 +57,8 @@ ul {
 .log-picotemp{
     font-size: 20px;
 }
+
+
 
 
 
