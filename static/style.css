@@ -16,6 +16,10 @@ ul {
     font-size:35px;
 }
 
+#logs{
+    display:flex;
+}
+
 .log{
     max-height: 35vh;
     overflow-y: auto;
