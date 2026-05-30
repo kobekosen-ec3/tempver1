@@ -5,7 +5,7 @@ const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
 // const ctx = document.getElementById("tempgraph");
 
-let chart = null;
+// let chart = null;
 
 let loghyouji = false;
 
