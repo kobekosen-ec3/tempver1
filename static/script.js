@@ -3,7 +3,7 @@ const logs = document.getElementById("logs");
 const logbtn = document.getElementById("logopen");
 const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
-const ctx = document.getElementById("tempgraph");
+// const ctx = document.getElementById("tempgraph");
 
 let chart = null;
 
@@ -65,47 +65,47 @@ async function update() {
         list.appendChild(li);
     }
 
-    const labels = [];
-    const dsTemps = [];
-    const picoTemps = [];
+    // const labels = [];
+    // const dsTemps = [];
+    // const picoTemps = [];
     
-    const graphLog = log.slice(-10);
+    // const graphLog = log.slice(-10);
 
-    for (let i = 0; i < graphLog.length; i++) {
-        if (graphLog[i].ds != null && graphLog[i].pico != null) {
-            labels.push(graphLog[i].time);
-            dsTemps.push(graphLog[i].ds);
-            picoTemps.push(graphLog[i].pico);
-        }
-    }
+    // for (let i = 0; i < graphLog.length; i++) {
+    //     if (graphLog[i].ds != null && graphLog[i].pico != null) {
+    //         labels.push(graphLog[i].time);
+    //         dsTemps.push(graphLog[i].ds);
+    //         picoTemps.push(graphLog[i].pico);
+    //     }
+    // }
 
-    if (chart) {
-        chart.destroy();
-    }
+//     if (chart) {
+//         chart.destroy();
+//     }
     
-    chart = new Chart(ctx, {
-        type: "line",
+//     chart = new Chart(ctx, {
+//         type: "line",
     
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "DS18B20",
-                    data: dsTemps
-                },
-                {
-                    label: "Pico",
-                    data: picoTemps
-                }
-            ]
-        },
+//         data: {
+//             labels: labels,
+//             datasets: [
+//                 {
+//                     label: "DS18B20",
+//                     data: dsTemps
+//                 },
+//                 {
+//                     label: "Pico",
+//                     data: picoTemps
+//                 }
+//             ]
+//         },
     
-        options: {
-            responsive: true
-        }
-    });
+//         options: {
+//             responsive: true
+//         }
+//     });
     
-}
+// }
 
 // ログ表示ボタン
 logbtn.addEventListener("click", () => {
