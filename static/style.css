@@ -17,21 +17,21 @@ ul {
 }
 
 #logs{
-    display:flex;
+    /* display:flex; */
     gap: 20px;
     justify-content: center;
     align-items: flex-start;
 }
 
-.log_left{
+/* .log_left{
     width: 40%;
-}
+} */
 
-.log_right{
+/* .log_right{
     width: 50%;
-}
+} */
 .log{
-    max-height: 40vh;
+    max-height: 35vh;
     overflow-y: auto;
 }
 
