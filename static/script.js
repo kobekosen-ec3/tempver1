@@ -105,7 +105,7 @@ async function update() {
 //         }
 //     });
     
-// }
+}
 
 // ログ表示ボタン
 logbtn.addEventListener("click", () => {
