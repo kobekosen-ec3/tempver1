@@ -33,37 +33,89 @@ async function update() {
     const list = document.getElementById("log");
     list.innerHTML = "";
 
-    for (let i = log.length-1; i >= 0; i--) {
+
+    for (let i = log.length - 1; i >= 0; i--) {
+    
+        const item = log[i];
     
         const li = document.createElement("li");
     
-        // 日付
+        // const device = document.createElement("span");
+        // device.className = "log-device";
+        // device.textContent = "機器:" + item.device_id;
+    
         const date = document.createElement("span");
         date.className = "log-date";
     
-        const parts = log[i].time.split(" ");
+        const parts = item.time.split(" ");
         date.textContent = parts[0];
     
-        // 時間
         const time = document.createElement("span");
         time.className = "log-time";
         time.textContent = parts[1];
     
-        // 温度
         const dstemp = document.createElement("span");
         dstemp.className = "log-dstemp";
-        dstemp.textContent ="センサー温度:" + (log[i].ds != null ? log[i].ds.toFixed(2) : "--") + "℃";
-
+        dstemp.textContent =
+            "センサー温度:" +
+            (item.ds != null && item.ds !== ""
+                ? Number(item.ds).toFixed(2)
+                : "--")
+            + "℃";
+    
         const picotemp = document.createElement("span");
         picotemp.className = "log-picotemp";
-        picotemp.textContent ="室内温度:" + (log[i].pico != null ? log[i].pico.toFixed(2) : "--")+ "℃";
+        picotemp.textContent =
+            "室内温度:" +
+            (item.pico != null
+                ? Number(item.pico).toFixed(2)
+                : "--")
+            + "℃";
     
+        // li.appendChild(device);
         li.appendChild(date);
         li.appendChild(time);
         li.appendChild(dstemp);
         li.appendChild(picotemp);
+    
         list.appendChild(li);
     }
+    
+
+    // for (let i = log.length-1; i >= 0; i--) {
+    
+    //     const li = document.createElement("li");
+    
+    //     // 日付
+    //     const date = document.createElement("span");
+    //     date.className = "log-date";
+    
+    //     const parts = log[i].time.split(" ");
+    //     date.textContent = parts[0];
+    
+    //     // 時間
+    //     const time = document.createElement("span");
+    //     time.className = "log-time";
+    //     time.textContent = parts[1];
+    
+    //     // 温度
+    //     const dstemp = document.createElement("span");
+    //     dstemp.className = "log-dstemp";
+    //     dstemp.textContent ="センサー温度:" + (log[i].ds != null ? log[i].ds.toFixed(2) : "--") + "℃";
+
+    //     const picotemp = document.createElement("span");
+    //     picotemp.className = "log-picotemp";
+    //     picotemp.textContent ="室内温度:" + (log[i].pico != null ? log[i].pico.toFixed(2) : "--")+ "℃";
+    
+    //     li.appendChild(date);
+    //     li.appendChild(time);
+    //     li.appendChild(dstemp);
+    //     li.appendChild(picotemp);
+    //     list.appendChild(li);
+    // }
+
+    //---グラフ
+
 
     // const labels = [];
     // const dsTemps = [];
