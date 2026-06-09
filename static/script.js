@@ -12,19 +12,34 @@ let loghyouji = false;
 async function update() {
     const res = await fetch("/get");
     const data = await res.json();
-
-    if (data.ds !== null) {
-        document.getElementById("ds").textContent = data.ds.toFixed(2) + " ℃";
-
-        document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
-
-        const now = new Date();
-        const hh = String(now.getHours()).padStart(2, "0");
-        const mm = String(now.getMinutes()).padStart(2, "0");
-        const ss = String(now.getSeconds()).padStart(2, "0");
-
-        document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
+    
+    const devices = Object.values(data);
+    
+    if (devices.length > 0) {
+    
+        const current = devices[0];
+    
+        document.getElementById("ds").textContent =
+            Number(current.ds).toFixed(2) + " ℃";
+    
+        document.getElementById("pico").textContent =
+            Number(current.pico).toFixed(2) + " ℃";
+    
+        document.getElementById("time").textContent =
+            current.time;
     }
+
+    // if (data.ds !== null) {
+    //     document.getElementById("ds").textContent = data.ds.toFixed(2) + " ℃";
+    //     document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
+
+    //     const now = new Date();
+    //     const hh = String(now.getHours()).padStart(2, "0");
+    //     const mm = String(now.getMinutes()).padStart(2, "0");
+    //     const ss = String(now.getSeconds()).padStart(2, "0");
+
+    //     document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
+    // }
 
     // ログ取得
     const logRes = await fetch("/log");
@@ -73,39 +88,6 @@ async function update() {
     
         list.appendChild(li);
     }
-    
-
-    // for (let i = log.length-1; i >= 0; i--) {
-    
-    //     const li = document.createElement("li");
-    
-    //     // 日付
-    //     const date = document.createElement("span");
-    //     date.className = "log-date";
-    
-    //     const parts = log[i].time.split(" ");
-    //     date.textContent = parts[0];
-    
-    //     // 時間
-    //     const time = document.createElement("span");
-    //     time.className = "log-time";
-    //     time.textContent = parts[1];
-    
-    //     // 温度
-    //     const dstemp = document.createElement("span");
-    //     dstemp.className = "log-dstemp";
-    //     dstemp.textContent ="センサー温度:" + (log[i].ds != null ? log[i].ds.toFixed(2) : "--") + "℃";
-
-    //     const picotemp = document.createElement("span");
-    //     picotemp.className = "log-picotemp";
-    //     picotemp.textContent ="室内温度:" + (log[i].pico != null ? log[i].pico.toFixed(2) : "--")+ "℃";
-    
-    //     li.appendChild(date);
-    //     li.appendChild(time);
-    //     li.appendChild(dstemp);
-    //     li.appendChild(picotemp);
-    //     list.appendChild(li);
-    // }
 
     //---グラフ
 
@@ -165,6 +147,8 @@ logbtn.addEventListener("click", () => {
         loghyouji = true;
     }
 });
+
+
 
 setInterval(update, 2000);
 update();
