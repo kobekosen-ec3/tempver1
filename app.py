@@ -19,20 +19,42 @@ GAS_URL = "https://script.google.com/macros/s/AKfycbz2zaEWHde2jAPECg80vL9zpWWfh-
 def home():
     return render_template("index.html")
 
+# @app.route("/data", methods=["POST"])
+# def receive():
+#     global latest_data
+
+#     data = request.json
+#     latest_data = data
+
+#     # GASへ転送
+#     try:
+#         requests.post(GAS_URL, json=data)
+#     except:
+#         pass
+
+#     return "OK"
+
 @app.route("/data", methods=["POST"])
 def receive():
     global latest_data
 
     data = request.json
-    latest_data = data
 
-    # GASへ転送
+    device_id = data.get("device_id")
+
+    if device_id:
+        latest_data[device_id] = data
+
     try:
         requests.post(GAS_URL, json=data)
     except:
         pass
 
     return "OK"
+
+@app.route("/devices")
+def devices():
+    return jsonify(latest_data)
 
 @app.route("/get")
 def get_data():
