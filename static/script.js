@@ -4,9 +4,9 @@ const logbtn = document.getElementById("logopen");
 const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
 // const ctx = document.getElementById("tempgraph");
-
 // let chart = null;
 
+let lastTime = null;
 let loghyouji = false;
 
 async function update() {
@@ -16,22 +16,26 @@ async function update() {
     const devices = Object.values(data);
     
     if (devices.length > 0) {
-    
         const current = devices[0];
+        
+        if (current.time !== lastTime) {
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, "0");
+            const mm = String(now.getMinutes()).padStart(2, "0");
+            const ss = String(now.getSeconds()).padStart(2, "0");
+            document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
+            lastTime = current.time;
+        }
     
         document.getElementById("ds").textContent =
             Number(current.ds).toFixed(2) + " ℃";
     
         document.getElementById("pico").textContent =
             Number(current.pico).toFixed(2) + " ℃";
-    
-        // document.getElementById("time").textContent =
-        //     current.time;
-            const now = new Date();
-            const hh = String(now.getHours()).padStart(2, "0");
-            const mm = String(now.getMinutes()).padStart(2, "0");
-            const ss = String(now.getSeconds()).padStart(2, "0");
-            document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
+
+        
+
+        
     }
 
     // if (data.ds !== null) {
