@@ -8,7 +8,8 @@ app = Flask(__name__)
 latest_data = {
     "ds": None,
     "pico": None,
-    "time": "--"
+    "time": "--",
+    "device":None
 }
 
 # GASのURLに変更
@@ -37,19 +38,14 @@ def home():
 @app.route("/data", methods=["POST"])
 def receive():
     global latest_data
-
     data = request.json
-
     device_id = data.get("device_id")
-
     if device_id:
         latest_data[device_id] = data
-
     try:
         requests.post(GAS_URL, json=data)
     except:
         pass
-
     return "OK"
 
 @app.route("/devices")
