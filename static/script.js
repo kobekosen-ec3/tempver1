@@ -25,8 +25,13 @@ async function update() {
         document.getElementById("pico").textContent =
             Number(current.pico).toFixed(2) + " ℃";
     
-        document.getElementById("time").textContent =
-            current.time;
+        // document.getElementById("time").textContent =
+        //     current.time;
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, "0");
+            const mm = String(now.getMinutes()).padStart(2, "0");
+            const ss = String(now.getSeconds()).padStart(2, "0");
+            document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
     }
 
     // if (data.ds !== null) {
