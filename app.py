@@ -5,12 +5,13 @@ import requests
 
 app = Flask(__name__)
 
-latest_data = {
-    "ds": None,
-    "pico": None,
-    "time": "--",
-    "device":None
-}
+# latest_data = {
+#     "ds": None,
+#     "pico": None,
+#     "time": "--",
+#     "device":None
+# }
+latest_data = { }
 
 # GASのURLに変更
 GAS_URL = "https://script.google.com/macros/s/AKfycbz2zaEWHde2jAPECg80vL9zpWWfh-rl4cbGDwu4w6lbj6zIkFUSK34mqWU-3-WHJdTTdA/exec"
