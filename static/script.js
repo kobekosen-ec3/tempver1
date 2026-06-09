@@ -56,21 +56,14 @@ async function update() {
     
         const dstemp = document.createElement("span");
         dstemp.className = "log-dstemp";
-        dstemp.textContent =
-            "センサー温度:" +
-            (item.ds != null && item.ds !== ""
-                ? Number(item.ds).toFixed(2)
-                : "--")
-            + "℃";
+        dstemp.textContent = "センサー温度:" + (item.ds != null && item.ds !== "" ? Number(item.ds).toFixed(2): "--")+ "℃";
+        // dstemp.textContent ="センサー温度:" + (log[i].ds != null ? log[i].ds.toFixed(2) : "--") + "℃";
     
         const picotemp = document.createElement("span");
+        
         picotemp.className = "log-picotemp";
-        picotemp.textContent =
-            "室内温度:" +
-            (item.pico != null
-                ? Number(item.pico).toFixed(2)
-                : "--")
-            + "℃";
+        picotemp.textContent ="室内温度:" + (item.pico != null && item.pico !== "" ? Number(item.pico).toFixed(2): "--") + "℃";
+        // picotemp.textContent ="室内温度:" + (log[i].pico != null ? log[i].pico.toFixed(2) : "--")+ "℃";
     
         // li.appendChild(device);
         li.appendChild(date);
