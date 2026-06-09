@@ -1,5 +1,5 @@
 // static/script.js
-const logs = document.getElementById("logs");
+const logs = document.getElementById("logleft");
 const logbtn = document.getElementById("logopen");
 const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
