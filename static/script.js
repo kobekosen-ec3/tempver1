@@ -166,7 +166,7 @@ logbtn.addEventListener("click", () => {
         hyoujitx.textContent = "表示";
         loghyouji = false;
     } else {
-        logs.style.display = "flex";
+        logs.style.display = "block";
         // logbox.scrollTop = logbox.scrollHeight;
         hyoujitx.textContent = "非表示";
         loghyouji = true;
