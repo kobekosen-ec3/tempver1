@@ -18,14 +18,16 @@ async function update() {
     if (devices.length > 0) {
         const current = devices[0];
         
-        if (current.time !== lastTime) {
-            const now = new Date();
-            const hh = String(now.getHours()).padStart(2, "0");
-            const mm = String(now.getMinutes()).padStart(2, "0");
-            const ss = String(now.getSeconds()).padStart(2, "0");
-            document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
-            lastTime = current.time;
-        }
+        // if (current.time !== lastTime) {
+        //     const now = new Date();
+        //     const hh = String(now.getHours()).padStart(2, "0");
+        //     const mm = String(now.getMinutes()).padStart(2, "0");
+        //     const ss = String(now.getSeconds()).padStart(2, "0");
+        //     document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
+        //     lastTime = current.time;
+        // }
+        document.getElementById("time").textContent = current.time;
+        lastTime = current.time;
     
         document.getElementById("ds").textContent =
             Number(current.ds).toFixed(2) + " ℃";
