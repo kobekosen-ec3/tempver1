@@ -14,7 +14,7 @@ app = Flask(__name__)
 latest_data = { }
 
 # GASのURLに変更
-GAS_URL = "https://script.google.com/macros/s/AKfycbz4SZEAXrYWQm0mzQ_EUOjJjD49sC_H8kSKHd8rwHV3IQUeNLo16uI3oiQ1rsc0CKc6kg/exec"
+GAS_URL = "https://script.google.com/macros/s/AKfycbw4jSdZjcgoTG2CILDIHX2mE93l38f3SVwGyUm5k5FYHn9zIIF1IlCr_eeH9NebvyV4qQ/exec"
 
 
 @app.route("/")
