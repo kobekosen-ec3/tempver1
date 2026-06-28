@@ -103,11 +103,17 @@ button{
 }
 
 .log{
-  height: 220px;  
-  overflow-y: auto;
-  margin-bottom: 25px;
-  
-  /* overflow-y: auto; */
+    position: relative;
+    height: 220px;
+    overflow-y: auto;
+  　margin-bottom: 25px;
+}
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 ul {
