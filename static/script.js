@@ -18,14 +18,6 @@ async function update() {
     if (devices.length > 0) {
         const current = devices[0];
         
-        // if (current.time !== lastTime) {
-        //     const now = new Date();
-        //     const hh = String(now.getHours()).padStart(2, "0");
-        //     const mm = String(now.getMinutes()).padStart(2, "0");
-        //     const ss = String(now.getSeconds()).padStart(2, "0");
-        //     document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
-        //     lastTime = current.time;
-        // }
         document.getElementById("time").textContent = current.time;
         lastTime = current.time;
     
@@ -34,23 +26,7 @@ async function update() {
     
         document.getElementById("pico").textContent =
             Number(current.pico).toFixed(2) + " ℃";
-
-        
-
-        
     }
-
-    // if (data.ds !== null) {
-    //     document.getElementById("ds").textContent = data.ds.toFixed(2) + " ℃";
-    //     document.getElementById("pico").textContent = data.pico.toFixed(2) + " ℃";
-
-    //     const now = new Date();
-    //     const hh = String(now.getHours()).padStart(2, "0");
-    //     const mm = String(now.getMinutes()).padStart(2, "0");
-    //     const ss = String(now.getSeconds()).padStart(2, "0");
-
-    //     document.getElementById("time").textContent = hh + ":" + mm + ":" + ss;
-    // }
 
     // ログ取得
     const logRes = await fetch("/log");
@@ -66,34 +42,27 @@ async function update() {
     
         const li = document.createElement("li");
     
-        // const device = document.createElement("span");
-        // device.className = "log-device";
-        // device.textContent = "機器:" + item.device_id;
-    
-        const date = document.createElement("span");
-        date.className = "log-date";
-    
         const parts = item.time.split(" ");
-        date.textContent = parts[0];
     
-        const time = document.createElement("span");
-        time.className = "log-time";
-        time.textContent = parts[1];
+        const datetime = document.createElement("div");
+        datetime.className = "log-datetime";
+        datetime.textContent = parts[0] + " " + parts[1];
     
-        const dstemp = document.createElement("span");
+        const dstemp = document.createElement("div");
         dstemp.className = "log-dstemp";
-        dstemp.textContent = "センサー温度:" + (item.ds != null && item.ds !== "" ? Number(item.ds).toFixed(2): "--")+ "℃";
-        // dstemp.textContent ="センサー温度:" + (log[i].ds != null ? log[i].ds.toFixed(2) : "--") + "℃";
+        dstemp.textContent =
+            "センサ温度：" +
+            (item.ds != null && item.ds !== "" ? Number(item.ds).toFixed(2) : "--") +
+            " ℃";
     
-        const picotemp = document.createElement("span");
-        
+        const picotemp = document.createElement("div");
         picotemp.className = "log-picotemp";
-        picotemp.textContent ="室内温度:" + (item.pico != null && item.pico !== "" ? Number(item.pico).toFixed(2): "--") + "℃";
-        // picotemp.textContent ="室内温度:" + (log[i].pico != null ? log[i].pico.toFixed(2) : "--")+ "℃";
+        picotemp.textContent =
+            "本体温度　：" +
+            (item.pico != null && item.pico !== "" ? Number(item.pico).toFixed(2) : "--") +
+            " ℃";
     
-        // li.appendChild(device);
-        li.appendChild(date);
-        li.appendChild(time);
+        li.appendChild(datetime);
         li.appendChild(dstemp);
         li.appendChild(picotemp);
     
@@ -144,22 +113,6 @@ async function update() {
 //     });
     
 }
-
-// // ログ表示ボタン
-// logbtn.addEventListener("click", () => {
-//     if (loghyouji) {
-//         logs.style.display = "none";
-//         hyoujitx.textContent = "表示";
-//         loghyouji = false;
-//     } else {
-//         logs.style.display = "block";
-//         // logbox.scrollTop = logbox.scrollHeight;
-//         hyoujitx.textContent = "非表示";
-//         loghyouji = true;
-//     }
-// });
-
-
 
 setInterval(update, 2000);
 update();
