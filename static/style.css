@@ -99,11 +99,12 @@ button{
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   font-size: 16px; 
-  height: 300px;  
-  overflow-y: auto;
+  
 }
 
 .log{
+  height: 322px;  
+  overflow-y: auto;
   /* overflow-y: auto; */
 }
 
