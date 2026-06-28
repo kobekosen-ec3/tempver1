@@ -46,7 +46,7 @@ async function update() {
     
         const datetime = document.createElement("div");
         datetime.className = "log-datetime";
-        datetime.textContent = parts[0] + " " + parts[1];
+        datetime.textContent = parts[0];
     
         const dstemp = document.createElement("div");
         dstemp.className = "log-dstemp";
