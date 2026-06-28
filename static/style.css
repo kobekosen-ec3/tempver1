@@ -97,6 +97,7 @@ label{
   display: grid;
   align-items: center;
   grid-template-columns: 1fr auto 1fr;
+  padding-buttom:10px;
 }
 .up{
   border-radius: 50%;
