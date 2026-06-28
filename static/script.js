@@ -3,6 +3,12 @@ const logbox = document.getElementById("logbox");
 const loading = document.getElementById("loading");
 const list = document.getElementById("log");
 const saveTempBtn = document.getElementById("savetempbtn");
+const totop=document.getElementById("toTop");
+const logscr = document.getElementById("logs");
+totop.addEventListener("click", async () => {
+    logscr.scrollTop = 0;
+});
+
 
 loading.style.display = "block";
 list.style.display = "none";
