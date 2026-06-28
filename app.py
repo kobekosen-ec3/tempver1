@@ -45,6 +45,11 @@ def get_log():
 
 threshold = 30.0
 
+@app.route("/threshold", methods=["GET"])
+def get_threshold():
+    return jsonify({"threshold": threshold})
+
+
 @app.route("/threshold", methods=["POST"])
 def set_threshold():
     global threshold
