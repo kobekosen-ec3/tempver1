@@ -1,13 +1,15 @@
 // static/script.js
-// const logs = document.getElementById("logleft");
-// const logbtn = document.getElementById("logopen");
-// const hyoujitx = document.getElementById("hyoujitx");
-const logbox = document.getElementById("logbox");
-// const ctx = document.getElementById("tempgraph");
-// let chart = null;
 
+const logbox = document.getElementById("logbox");
+
+const loading = document.getElementById("loading");
+const list = document.getElementById("log");
+
+loading.style.display = "block";
+list.style.display = "none";
+
+let firstLoad = true;
 let lastTime = null;
-let loghyouji = false;
 
 async function update() {
     const res = await fetch("/get");
@@ -29,44 +31,56 @@ async function update() {
     }
 
     // ログ取得
-    const logRes = await fetch("/log");
-    const log = await logRes.json();
-
-    const list = document.getElementById("log");
-    list.innerHTML = "";
-
-
-    for (let i = log.length - 1; i >= 0; i--) {
+    if (firstLoad) {
+        loading.style.display = "block";
+        list.style.display = "none";
+    }
     
-        const item = log[i];
+    try {
+        const logRes = await fetch("/log");
+        const log = await logRes.json();
     
-        const li = document.createElement("li");
+        list.innerHTML = "";
     
-        const parts = item.time.split(" ");
+        for (let i = log.length - 1; i >= 0; i--) {
     
-        const datetime = document.createElement("div");
-        datetime.className = "log-datetime";
-        datetime.textContent = parts[0];
+            const item = log[i];
     
-        const dstemp = document.createElement("div");
-        dstemp.className = "log-dstemp";
-        dstemp.textContent =
-            "センサ温度：" +
-            (item.ds != null && item.ds !== "" ? Number(item.ds).toFixed(2) : "--") +
-            " ℃";
+            const li = document.createElement("li");
     
-        const picotemp = document.createElement("div");
-        picotemp.className = "log-picotemp";
-        picotemp.textContent =
-            "本体温度　：" +
-            (item.pico != null && item.pico !== "" ? Number(item.pico).toFixed(2) : "--") +
-            " ℃";
+            const parts = item.time.split(" ");
     
-        li.appendChild(datetime);
-        li.appendChild(dstemp);
-        li.appendChild(picotemp);
+            const datetime = document.createElement("div");
+            datetime.className = "log-datetime";
+            datetime.textContent = parts[0];
     
-        list.appendChild(li);
+            const dstemp = document.createElement("div");
+            dstemp.className = "log-dstemp";
+            dstemp.textContent =
+                "センサ温度：" +
+                (item.ds != null && item.ds !== "" ? Number(item.ds).toFixed(2) : "--") +
+                " ℃";
+    
+            const picotemp = document.createElement("div");
+            picotemp.className = "log-picotemp";
+            picotemp.textContent =
+                "本体温度　：" +
+                (item.pico != null && item.pico !== "" ? Number(item.pico).toFixed(2) : "--") +
+                " ℃";
+    
+            li.appendChild(datetime);
+            li.appendChild(dstemp);
+            li.appendChild(picotemp);
+    
+            list.appendChild(li);
+        }
+    
+    } finally {
+        if (firstLoad) {
+            loading.style.display = "none";
+            list.style.display = "block";
+            firstLoad = false;
+        }
     }
 
     //---グラフ
