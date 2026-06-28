@@ -7,6 +7,13 @@ const saveTempBtn = document.getElementById("savetempbtn");
 loading.style.display = "block";
 list.style.display = "none";
 
+async function loadThreshold() {
+    const res = await fetch("/threshold");
+    const data = await res.json();
+
+    document.getElementById("threshold").value = data.threshold;
+}
+
 let firstLoad = true;
 let lastTime = null;
 
@@ -98,5 +105,6 @@ async function update() {
     }
 });
 
-setInterval(update, 2000);
+loadThreshold();
 update();
+setInterval(update, 2000);
