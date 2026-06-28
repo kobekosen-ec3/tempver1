@@ -207,12 +207,12 @@ ul {
   h2{
     font-size:25px;
   }
-  setbtn{
+  .setbtn{
     width: 55px;
     height: 43px;
   }
 
-  top{
+  .top{
     width:55px;
     height:55px;
   }
