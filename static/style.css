@@ -100,6 +100,10 @@ button{
   font-size: 16px; 
 }
 
+.log{
+  overflow-y: auto;
+}
+
 ul {
     list-style: none;
     margin: 0;
