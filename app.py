@@ -45,19 +45,17 @@ def get_log():
 
 threshold = 30.0
 
-@app.route("/threshold", methods=["GET"])
-def get_threshold():
-    return jsonify({"threshold": threshold})
-
-
-@app.route("/threshold", methods=["POST"])
-def set_threshold():
+@app.route("/threshold", methods=["GET", "POST"])
+def threshold_api():
     global threshold
 
-    data = request.get_json()
-    threshold = float(data["threshold"])
+    if request.method == "POST":
+        data = request.get_json()
+        threshold = float(data["threshold"])
+        return jsonify({"status": "ok"})
 
-    return jsonify({"status": "ok"})
+    return jsonify({"threshold": threshold})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
