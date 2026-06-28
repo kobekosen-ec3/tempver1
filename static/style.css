@@ -101,6 +101,7 @@ button{
 }
 
 .log{
+  max-height: 60vx:
   overflow-y: auto;
 }
 
