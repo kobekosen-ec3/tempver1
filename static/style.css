@@ -126,5 +126,15 @@ ul {
 }
 
 .log-picotemp {
-  padding-button: 16px;
+  padding-bottom: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #ff8095;
+  border-radius: 5px;
 }
