@@ -76,6 +76,7 @@ async function update() {
             firstLoad = false;
         }
     }
+}
 
     saveTempBtn.addEventListener("click", async () => {
     const threshold = Number(document.getElementById("threshold").value);
