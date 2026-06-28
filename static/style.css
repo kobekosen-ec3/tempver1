@@ -31,6 +31,7 @@ h2{
   flex-shrink: 0;
 
   grid-column: 2;
+  padding-buttom:10px;
   /* padding-top: 20px; */
 }
 
