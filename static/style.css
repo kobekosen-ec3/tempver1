@@ -182,13 +182,29 @@ ul {
     margin-bottom:10px ;
   }
 
+  h2{
+    font-size:25px;
+  }
+  button{
+    width: 28px;
+    /* height: 25px; */
+    background-color: #BE1E5E;
+    color: #ffff;
+    border-radius: 5px;
+    border: none;
+    &:hover {
+              background-color: rgb(109, 100, 100);
+      }
+  }
+
+
   .Top{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
     padding-bottom: 5px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .set{
@@ -199,7 +215,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
   }
 
   .nowbox,
@@ -229,11 +245,20 @@ ul {
   .log-dstemp,
   .log-picotemp {
       font-size: 20px;
-      margin-left: 18px;
+      margin-left: 25px;
   }
 
   .log-picotemp {
     padding-bottom: 20px;
+  }
+  button{
+    width: 48px;
+    height: 48px;
+  }
+  #threshold{
+    width: 60px;
+    height: 40px;
+    font-size: 18px;
   }
 
 }
