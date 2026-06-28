@@ -113,3 +113,18 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+.log-datetime {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.log-dstemp,
+.log-picotemp {
+    font-size: 16px;
+    margin-left: 32px;
+}
+
+.log-picotemp {
+  padding-button: 16px;
+}
