@@ -207,17 +207,17 @@ ul {
   h2{
     font-size:25px;
   }
-  button{
-    width: 28px;
-    /* height: 25px; */
-    background-color: #BE1E5E;
-    color: #ffff;
-    border-radius: 5px;
-    border: none;
-    &:hover {
-              background-color: rgb(109, 100, 100);
-      }
+  setbtn{
+    width: 55px;
+    height: 43px;
   }
+
+  top{
+    width:55px;
+    height:55px;
+  }
+
+  
 
 
   .Top{
