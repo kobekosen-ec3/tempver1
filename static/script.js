@@ -1,7 +1,7 @@
 // static/script.js
-const logs = document.getElementById("logleft");
-const logbtn = document.getElementById("logopen");
-const hyoujitx = document.getElementById("hyoujitx");
+// const logs = document.getElementById("logleft");
+// const logbtn = document.getElementById("logopen");
+// const hyoujitx = document.getElementById("hyoujitx");
 const logbox = document.getElementById("logbox");
 // const ctx = document.getElementById("tempgraph");
 // let chart = null;
@@ -145,19 +145,19 @@ async function update() {
     
 }
 
-// ログ表示ボタン
-logbtn.addEventListener("click", () => {
-    if (loghyouji) {
-        logs.style.display = "none";
-        hyoujitx.textContent = "表示";
-        loghyouji = false;
-    } else {
-        logs.style.display = "block";
-        // logbox.scrollTop = logbox.scrollHeight;
-        hyoujitx.textContent = "非表示";
-        loghyouji = true;
-    }
-});
+// // ログ表示ボタン
+// logbtn.addEventListener("click", () => {
+//     if (loghyouji) {
+//         logs.style.display = "none";
+//         hyoujitx.textContent = "表示";
+//         loghyouji = false;
+//     } else {
+//         logs.style.display = "block";
+//         // logbox.scrollTop = logbox.scrollHeight;
+//         hyoujitx.textContent = "非表示";
+//         loghyouji = true;
+//     }
+// });
 
 
 
