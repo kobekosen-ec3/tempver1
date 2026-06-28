@@ -86,7 +86,6 @@ button{
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
   font-size: 36px;
-  align-items: center;
 }
 
 .nowtx{
@@ -106,7 +105,8 @@ button{
 .log{
   height: 220px;  
   overflow-y: auto;
-  margin-buttom: 25px;
+  margin-bottom: 25px;
+  
   /* overflow-y: auto; */
 }
 
@@ -117,7 +117,7 @@ ul {
 }
 
 .log-datetime {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 3px;
 }
 
@@ -132,11 +132,75 @@ ul {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 15px;
   height: 10px;
+  
 }
  
 ::-webkit-scrollbar-thumb {
   background: #BE1E5E;
-  border-radius: 5px;
+  border-radius: 20px;
+  
+}
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  box-shadow:0 0 5px #994956 inset ;
+  
+}
+
+.loading{
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+    border: 4px solid #E3CCCC;
+    border-top: 4px solid #BE1E5E;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width:780px) {
+
+  body{
+    overflow-y: auto;
+  }
+
+  .Top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .set{
+    padding-left: 0;
+  }
+
+  .flexbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nowbox,
+  .logbox{
+    width: 90%;
+    max-width: 500px;
+    box-sizing: border-box;
+  }
+
+  .log{
+    height: 250px;
+  }
 }
