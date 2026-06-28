@@ -1,9 +1,8 @@
 // static/script.js
-
 const logbox = document.getElementById("logbox");
-
 const loading = document.getElementById("loading");
 const list = document.getElementById("log");
+const saveTempBtn = document.getElementById("savetempbtn");
 
 loading.style.display = "block";
 list.style.display = "none";
@@ -14,7 +13,6 @@ let lastTime = null;
 async function update() {
     const res = await fetch("/get");
     const data = await res.json();
-    
     const devices = Object.values(data);
     
     if (devices.length > 0) {
@@ -22,7 +20,7 @@ async function update() {
         
         document.getElementById("time").textContent = current.time;
         lastTime = current.time;
-    
+        
         document.getElementById("ds").textContent =
             Number(current.ds).toFixed(2) + " ℃";
     
@@ -43,13 +41,10 @@ async function update() {
         list.innerHTML = "";
     
         for (let i = log.length - 1; i >= 0; i--) {
-    
             const item = log[i];
-    
             const li = document.createElement("li");
-    
             const parts = item.time.split(" ");
-    
+            
             const datetime = document.createElement("div");
             datetime.className = "log-datetime";
             datetime.textContent = parts[0];
@@ -71,7 +66,6 @@ async function update() {
             li.appendChild(datetime);
             li.appendChild(dstemp);
             li.appendChild(picotemp);
-    
             list.appendChild(li);
         }
     
@@ -83,50 +77,25 @@ async function update() {
         }
     }
 
-    //---グラフ
+    saveTempBtn.addEventListener("click", async () => {
+    const threshold = Number(document.getElementById("threshold").value);
 
+    const res = await fetch("/threshold", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            threshold: threshold
+        })
+    });
 
-    // const labels = [];
-    // const dsTemps = [];
-    // const picoTemps = [];
-    
-    // const graphLog = log.slice(-10);
-
-    // for (let i = 0; i < graphLog.length; i++) {
-    //     if (graphLog[i].ds != null && graphLog[i].pico != null) {
-    //         labels.push(graphLog[i].time);
-    //         dsTemps.push(graphLog[i].ds);
-    //         picoTemps.push(graphLog[i].pico);
-    //     }
-    // }
-
-//     if (chart) {
-//         chart.destroy();
-//     }
-    
-//     chart = new Chart(ctx, {
-//         type: "line",
-    
-//         data: {
-//             labels: labels,
-//             datasets: [
-//                 {
-//                     label: "DS18B20",
-//                     data: dsTemps
-//                 },
-//                 {
-//                     label: "Pico",
-//                     data: picoTemps
-//                 }
-//             ]
-//         },
-    
-//         options: {
-//             responsive: true
-//         }
-//     });
-    
-}
+    if (res.ok) {
+        alert("設定を保存しました");
+    } else {
+        alert("保存に失敗しました");
+    }
+});
 
 setInterval(update, 2000);
 update();
