@@ -28,6 +28,7 @@ h2{
   color: #ffffff;
   font-size: 30px;
   text-align: center;
+  flex-shrink: 0;
   /* padding-top: 20px; */
 }
 
@@ -98,10 +99,11 @@ button{
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   font-size: 16px; 
+  height: 400px;  
 }
 
 .log{
-  max-height: 60vx:
+  flex: 1;
   overflow-y: auto;
 }
 
