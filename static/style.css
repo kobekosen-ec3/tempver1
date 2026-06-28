@@ -102,9 +102,8 @@ button{
   
 }
 
-
-
 .log{
+    margin-top: -40px;
     position: relative;
     height: 220px;
     overflow-y: auto;
