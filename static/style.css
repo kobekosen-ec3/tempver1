@@ -178,7 +178,8 @@ ul {
 @media screen and (max-width:780px) {
 
   body{
-    /* overflow-y: auto; */
+    overflow-y: auto;
+    margin-bottom:10px ;
   }
 
   .Top{
@@ -208,11 +209,11 @@ ul {
     box-sizing: border-box;
   }
   .nowbox{
-    font-size: 30px;
+    font-size: 25px;
   }
 
   .nowtx{
-    padding-top: 15px;
+    padding-top: 12px;
   }
 
   .log{
@@ -222,6 +223,7 @@ ul {
   .log-datetime {
     font-size: 18px;
     margin-bottom: 3px;
+    margin-left: -10px;
   }
 
   .log-dstemp,
