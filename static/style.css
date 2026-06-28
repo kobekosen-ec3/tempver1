@@ -204,7 +204,7 @@ ul {
     align-items: center;
     gap: 5px;
     padding-bottom: 5px;
-    margin-top: 10px;
+    margin-top: 0px;
   }
 
   .set{
@@ -252,7 +252,7 @@ ul {
     padding-bottom: 20px;
   }
   button{
-    width: 48px;
+    width: 55px;
     height: 48px;
   }
   #threshold{
