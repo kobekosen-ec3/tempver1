@@ -105,6 +105,7 @@ button{
 .log{
   height: 220px;  
   overflow-y: auto;
+  margin-buttom: 25px;
   /* overflow-y: auto; */
 }
 
