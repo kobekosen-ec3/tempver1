@@ -86,6 +86,7 @@ button{
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
   font-size: 36px;
+  align-items: center;
 }
 
 .nowtx{
@@ -116,7 +117,7 @@ ul {
 }
 
 .log-datetime {
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 3px;
 }
 
