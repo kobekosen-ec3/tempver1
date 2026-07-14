@@ -47,7 +47,7 @@ def get_log():
 def discord():
     return render_template("discord.html")
 @app.route("/index")
-def discord():
+def index():
     return render_template("index.html")
 
 threshold = 30.0
