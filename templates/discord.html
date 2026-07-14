@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Discord通知設定ページ</title>
+    <title>Discord設定</title>
     <link rel="stylesheet" href="/static/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
-    <h1>Discord通知設定ページ</h1>
-    <button onclick="location.href='/index'">メインページに戻る</button>
-    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-    <script src="/static/script.js"></script>
+
+<h1>Discord通知設定</h1>
+
+<div class="setting-box">
+
+    <label>Webhook URL</label><br>
+    <input
+        type="text"
+        id="webhook"
+        placeholder="https://discord.com/api/webhooks/..."
+        style="width:500px;"
+    >
+
+    <br><br>
+
+    <button id="test">テスト通知</button>
+    <button id="save">保存</button>
+
+    <br><br>
+
+    <button onclick="location.href='/'">戻る</button>
+
+</div>
+
+<script src="/static/discord.js"></script>
+
 </body>
-</html> 
+</html>
