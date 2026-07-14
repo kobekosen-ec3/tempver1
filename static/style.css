@@ -152,6 +152,9 @@ label{
 .hidden {
     display: none;
 }
+.postset{
+  width: 30px
+}
 
 @keyframes spin{
     from{
