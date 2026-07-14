@@ -6,7 +6,7 @@ app = Flask(__name__)
 latest_data = { }
 
 # GASのURLに変更
-GAS_URL = "https://script.google.com/macros/s/AKfycbw4jSdZjcgoTG2CILDIHX2mE93l38f3SVwGyUm5k5FYHn9zIIF1IlCr_eeH9NebvyV4qQ/exec"
+GAS_URL = "https://script.google.com/macros/s/AKfycbx8nKHF0gFDZuy33tlMlYNpBhCh80DDPyq5RK7jRD9Uk-P4zpvHI2WbBN6fsMAG4MEcGQ/exec"
 
 @app.route("/")
 def home():
@@ -47,24 +47,23 @@ def get_log():
 def discord():
     return render_template("discord.html")
     
-discord_webhook = ""
-@app.route("/discord_setting", methods=["POST", "GET"])
+
+@app.route("/discord_setting", methods=["GET", "POST"])
 def discord_setting():
-    global discord_webhook
+
     if request.method == "POST":
         data = request.get_json()
-        discord_webhook = data["webhook"]
         requests.post(
             GAS_URL,
             json={
                 "mode": "setWebhook",
-                "webhook": discord_webhook
+                "webhook": data["webhook"]
             }
         )
         return jsonify({"status": "ok"})
-    return jsonify({
-        "webhook": discord_webhook
-    })
+
+    res = requests.get(GAS_URL, params={"mode": "getWebhook"})
+    return jsonify(res.json())
 
 @app.route("/discord_test", methods=["POST"])
 def discord_test():
