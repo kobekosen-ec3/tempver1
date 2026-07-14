@@ -5,18 +5,18 @@ const list = document.getElementById("log");
 const saveTempBtn = document.getElementById("savetempbtn");
 const totop=document.getElementById("toTop");
 const logscr = document.getElementById("logs");
+const postset = document.getElementById("postset")
+const send = document.getElementById("send")
+
 totop.addEventListener("click", async () => {
     logscr.scrollTop = 0;
 });
-
-
 loading.style.display = "block";
 list.style.display = "none";
 
 async function loadThreshold() {
     const res = await fetch("/threshold");
     const data = await res.json();
-
     document.getElementById("threshold").value = data.threshold;
 }
 
@@ -109,6 +109,10 @@ async function update() {
     } else {
         alert("保存に失敗しました");
     }
+});
+
+postset.addEventListener("click", async () => {
+    send.classList.toggle('hidden');
 });
 
 loadThreshold();
