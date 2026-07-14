@@ -46,9 +46,21 @@ def get_log():
 @app.route("/discord")
 def discord():
     return render_template("discord.html")
-@app.route("/index")
-def index():
-    return render_template("index.html")
+    
+discord_webhook = ""
+@app.route("/discord_setting", methods=["GET", "POST"])
+def discord_setting():
+
+    global discord_webhook
+
+    if request.method == "POST":
+        data = request.get_json()
+        discord_webhook = data["webhook"]
+        return jsonify({"status": "ok"})
+
+    return jsonify({
+        "webhook": discord_webhook
+    })
 
 threshold = 30.0
 @app.route("/threshold", methods=["GET", "POST"])
