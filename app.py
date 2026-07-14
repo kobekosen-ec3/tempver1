@@ -43,19 +43,19 @@ def get_log():
         print("log error:", e)
         return "[]"
 
-threshold = 30.0
+@app.route("/discord")
+def discord():
+    return render_template("discord.html")
 
+threshold = 30.0
 @app.route("/threshold", methods=["GET", "POST"])
 def threshold_api():
     global threshold
-
     if request.method == "POST":
         data = request.get_json()
         threshold = float(data["threshold"])
         return jsonify({"status": "ok"})
-
     return jsonify({"threshold": threshold})
-
-
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
