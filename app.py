@@ -51,7 +51,6 @@ discord_webhook = ""
 @app.route("/discord_setting", methods=["POST", "GET"])
 def discord_setting():
     global discord_webhook
-
     if request.method == "POST":
         data = request.get_json()
         discord_webhook = data["webhook"]
@@ -66,22 +65,18 @@ def discord_setting():
     return jsonify({
         "webhook": discord_webhook
     })
+    
 @app.route("/discord_test", methods=["POST"])
 def discord_test():
-
     global discord_webhook
-
     if discord_webhook == "":
         return "Webhook未設定", 400
-
     payload = {
         "username": "温度管理BOT",
         "avatar_url": "https://raw.githubusercontent.com/kobekosen-ec3/imgpublic/main/tempBOT.png",
         "content": "✅ テスト通知です"
     }
-
     res = requests.post(discord_webhook, json=payload)
-
     return jsonify({
         "status": res.status_code
     })
