@@ -155,7 +155,20 @@ label{
 /* .postset{
   width: 30px
 } */
+.sendapp {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
 
+.sendapp img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
 @keyframes spin{
     from{
         transform: rotate(0deg);
