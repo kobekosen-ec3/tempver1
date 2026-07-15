@@ -46,6 +46,10 @@ def get_log():
 @app.route("/discord")
 def discord():
     return render_template("discord.html")
+
+@app.route("/line")
+def line():
+    return render_template("discord.html")
     
 
 @app.route("/discord_setting", methods=["GET", "POST"])
