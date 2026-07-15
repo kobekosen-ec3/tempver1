@@ -149,17 +149,12 @@ label{
     animation: spin 0.8s linear infinite;
 }
 
-/* .hidden {
-    display: none;
-} */
-/* .postset{
-  width: 30px
-} */
 .sendapp {
     width: 45px;
     height: 25px;
-    padding: 0;
+    padding: 5px;
     border: none;
+  　overflow: hidden;
     background: transparent;
 }
 
