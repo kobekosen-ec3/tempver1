@@ -5,7 +5,7 @@ const list = document.getElementById("log");
 const saveTempBtn = document.getElementById("savetempbtn");
 const totop=document.getElementById("toTop");
 const logscr = document.getElementById("logs");
-const postset = document.getElementById("postset")
+// const postset = document.getElementById("postset")
 const send = document.getElementById("send")
 
 totop.addEventListener("click", async () => {
@@ -111,9 +111,9 @@ async function update() {
     }
 });
 
-postset.addEventListener("click", async () => {
-    send.classList.toggle('hidden');
-});
+// postset.addEventListener("click", async () => {
+//     send.classList.toggle('hidden');
+// });
 
 loadThreshold();
 update();
