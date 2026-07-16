@@ -47,14 +47,8 @@ def get_log():
 def discord():
     return render_template("discord.html")
 
-@app.route("/line")
-def line():
-    return render_template("discord.html")
-    
-
 @app.route("/discord_setting", methods=["GET", "POST"])
 def discord_setting():
-
     if request.method == "POST":
         data = request.get_json()
         requests.post(
@@ -65,7 +59,6 @@ def discord_setting():
             }
         )
         return jsonify({"status": "ok"})
-
     res = requests.get(GAS_URL, params={"mode": "getWebhook"})
     return jsonify(res.json())
 
@@ -78,6 +71,36 @@ def discord_test():
         }
     )
     return jsonify({"status": "ok"})
+
+@app.route("/line")
+def line():
+    return render_template("discord.html")
+    
+@app.route("/line_setting", methods=["GET", "POST"])
+def line_setting():
+    if request.method == "POST":
+        data = request.get_json()
+        requests.post(
+            GAS_URL,
+            json={
+                "mode":"setLine",
+                "userid":data["userid"]
+            }
+        )
+        return jsonify({"status":"ok"})
+    res = requests.get(GAS_URL, params={"mode":"getLine"})
+    return jsonify(res.json())
+
+@app.route("/line_test", methods=["POST"])
+def line_test():
+    requests.post(
+        GAS_URL,
+        json={
+            "mode":"testLine"
+        }
+    )
+    return jsonify({"status":"ok"})
+
 
 threshold = 30.0
 @app.route("/threshold", methods=["GET", "POST"])
