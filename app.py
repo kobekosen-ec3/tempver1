@@ -76,19 +76,11 @@ def discord_test():
 def line():
     return render_template("discord.html")
     
-@app.route("/line_setting", methods=["GET", "POST"])
+@app.route("/line_setting")
 def line_setting():
-    if request.method == "POST":
-        data = request.get_json()
-        requests.post(
-            GAS_URL,
-            json={
-                "mode":"setLine",
-                "userid":data["userid"]
-            }
-        )
-        return jsonify({"status":"ok"})
-    res = requests.get(GAS_URL, params={"mode":"getLine"})
+    res = requests.get(GAS_URL, params={
+        "mode":"getLine"
+    })
     return jsonify(res.json())
 
 @app.route("/line_test", methods=["POST"])
