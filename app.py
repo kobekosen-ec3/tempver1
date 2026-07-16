@@ -93,6 +93,11 @@ def line_test():
     )
     return jsonify({"status":"ok"})
 
+@app.route("/callline", methods=["POST"])
+def callline():
+    print(request.json)
+    return "OK", 200
+
 
 threshold = 30.0
 @app.route("/threshold", methods=["GET", "POST"])
