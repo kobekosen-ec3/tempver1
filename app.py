@@ -74,7 +74,7 @@ def discord_test():
 
 @app.route("/line")
 def line():
-    return render_template("discord.html")
+    return render_template("line.html")
     
 @app.route("/line_setting")
 def line_setting():
