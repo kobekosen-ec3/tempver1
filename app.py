@@ -95,7 +95,12 @@ def line_test():
 
 @app.route("/callline", methods=["POST"])
 def callline():
-    print(request.json)
+    body = request.json
+    print(body)
+    if body.get("events"):
+        event = body["events"][0]
+        user_id = event["source"]["userId"]
+        print(user_id)
     return "OK", 200
 
 
