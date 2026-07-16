@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>LINE設定</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>LINE通知設定</h1>
+<div class="setting-box">
+    <p>
+        LINE通知を利用するには、下のボタンから<br>
+        LINE公式アカウントを友だち追加してください。
+    </p>
+    <br>
+    <a href="https://line.me/R/ti/p/@227njdzt" target="_blank">
+        <img
+            src="/static/img/line_add.png"
+            alt="友だち追加"
+            style="height:45px;"
+        >
+    </a>
+
+    <br><br>
+
+    <div id="status">取得状況：確認中...</div>
+
+    <br>
+
+    <button id="test" disabled>テスト通知</button>
+
+    <br><br>
+
+    <button onclick="location.href='/'">戻る</button>
+
+</div>
+
+<script src="/static/line.js"></script>
+
+</body>
+</html>
