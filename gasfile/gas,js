@@ -1,0 +1,215 @@
+function doPost(e) {
+  const sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("シート1");
+  const data = JSON.parse(e.postData.contents);
+  
+  // Webhook保存
+  if (data.mode === "setWebhook") {
+    PropertiesService
+      .getScriptProperties()
+      .setProperty("WEBHOOK_URL", data.webhook);
+    return ContentService.createTextOutput("OK");
+  }
+
+  if (data.mode === "setLine") {
+  PropertiesService
+    .getScriptProperties()
+    .setProperty("LINE_USERID", data.userId);
+
+  return ContentService.createTextOutput("OK");
+  }
+
+  // テスト通知
+  if (data.mode === "testDiscord") {
+    const now = getNowTime();
+    sendDiscord(
+        "**🧪 テスト通知です**\n" +
+        "> 🕒日時：" + now + "\n"+
+        "> 📡Webhook設定は正常です。"
+      );
+    
+    return ContentService.createTextOutput("OK");
+  }
+
+  // LINEテスト通知
+  if (data.mode === "testLine") {
+    const now = getNowTime();
+    sendLine(
+      "🧪 テスト通知です\n" +
+      "🕒日時：" + now + "\n" +
+      "📡LINE通知は正常です。"
+    );
+    return ContentService.createTextOutput("OK");
+  }
+
+  if (data.ds == null ||data.ds === "") {
+    return ContentService.createTextOutput("SKIP");
+  }
+  
+  sheet.appendRow([
+    data.day +"　"+ data.time, 
+    data.device_id,
+    data.ds,
+    data.pico,
+  ]);
+
+  checkAlarm(data);
+
+  return ContentService.createTextOutput("OK");
+}
+
+function doGet(e) {
+  if (e && e.parameter && e.parameter.mode == "getWebhook") {
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        webhook: PropertiesService.getScriptProperties().getProperty("WEBHOOK_URL") || ""
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (e && e.parameter && e.parameter.mode == "getLine") {
+    const id = PropertiesService
+        .getScriptProperties()
+        .getProperty("LINE_USERID");
+
+    return ContentService
+        .createTextOutput(JSON.stringify({
+            connected: id != null && id != ""
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("シート1");
+
+  const values = sheet.getDataRange().getValues();
+
+  let result = [];
+
+  
+
+  // 既存のログ取得処理...
+
+  // 最新100件だけ
+  const start = Math.max(1, values.length - 100);
+
+  for (let i = start; i < values.length; i++) {
+    result.push({
+      time: String(values[i][0]),
+      device_id: values[i][1],
+      ds: values[i][2],
+      pico: values[i][3]
+    });
+  }
+  return ContentService
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function checkAlarm(data) {
+  const props = PropertiesService.getScriptProperties();
+  const alarm = props.getProperty("alarm") || "OFF";
+  if (Number(data.ds) >= Number(data.threshold)) {
+
+    // 初めて超えた
+    if (alarm === "OFF") {
+      sendDiscord(
+        "**⚠️温度が高いです**\n" +
+        "> 🕒日時：" + data.day + " " + data.time + "\n"+
+        "> 🌡️温度：" + data.ds + "℃\n" +
+        "> ⚙️設定温度：" + data.threshold + "℃\n" 
+      );
+      props.setProperty("alarm", "ON");
+
+      sendLine(
+        "⚠️温度が高いです\n" +
+        "🕒日時：" + data.day + " " + data.time + "\n"+
+        "🌡️温度：" + data.ds + "℃\n" +
+        "⚙️設定温度：" + data.threshold + "℃" 
+      );
+    }
+
+  } else {
+    // 温度が下がったので次回通知できるようにする
+    if (alarm === "ON") {
+      sendDiscord(
+        "**✅温度は正常です**\n" +
+        "> 🕒日時：" + data.day + " " + data.time + "\n"+
+        "> 🌡️温度：" + data.ds + "℃\n" +
+        "> ⚙️設定温度：" + data.threshold + "℃\n" 
+      );
+
+      sendLine(
+        "✅温度は正常です\n" +
+        "🕒日時：" + data.day + " " + data.time + "\n"+
+        "🌡️温度：" + data.ds + "℃\n" +
+        "⚙️設定温度：" + data.threshold + "℃"  
+      );
+
+      props.setProperty("alarm", "OFF");
+    }   
+  }
+}
+
+function sendDiscord(message) {
+  const WEBHOOK_URL =PropertiesService.getScriptProperties().getProperty("WEBHOOK_URL");
+  if (!WEBHOOK_URL) return;
+  const payload = {
+    username: "温度管理BOT",
+    avatar_url: "https://raw.githubusercontent.com/kobekosen-ec3/imgpublic/refs/heads/main/tempBOT.png",
+    content: message
+  };
+  UrlFetchApp.fetch(WEBHOOK_URL,{
+    method:"post",
+    contentType:"application/json",
+    payload:JSON.stringify(payload)
+  });
+}
+
+function sendLine(message) {
+  const token = PropertiesService
+    .getScriptProperties()
+    .getProperty("LINE_ACCESS_TOKEN");
+
+  const userId = PropertiesService
+    .getScriptProperties()
+    .getProperty("LINE_USERID");
+
+  if (!token || !userId) {
+    Logger.log("token=" + token);
+    Logger.log("userId=" + userId);
+    return;
+  }
+
+  const res = UrlFetchApp.fetch(
+    "https://api.line.me/v2/bot/message/push",
+    {
+      method: "post",
+      contentType: "application/json",
+      headers: {
+        Authorization: "Bearer " + token
+      },
+      payload: JSON.stringify({
+        to: userId,
+        messages: [
+          {
+            type: "text",
+            text: message
+          }
+        ]
+      }),
+      muteHttpExceptions: true
+    }
+  );
+
+  Logger.log(res.getResponseCode());
+  Logger.log(res.getContentText());
+}
+
+function getNowTime() {
+  const date = new Date();
+  const format = 'yyyy/MM/dd HH:mm:ss';
+  return Utilities.formatDate(date, 'Asia/Tokyo', format);
+}
